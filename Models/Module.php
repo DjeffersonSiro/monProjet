@@ -3,6 +3,18 @@ class Module{
     private int $id;
     private string $libelle;
 
+
+
+    //many to one avec module
+    public function module():Module{
+        return new Module();
+    }
+
+    //one to many avec cours
+    public function cours():array{
+        return [];
+    }
+
     /**
      * Get the value of id
      */ 

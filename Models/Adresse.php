@@ -4,6 +4,12 @@ class Adresse{
     private string $ville;
     private string $quartier;
 
+    //one to many avec professeur 
+    public function professeur():Professeur{
+        return new Professeur;
+    }
+
+
     /**
      * Get the value of id
      */ 

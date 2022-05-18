@@ -16,7 +16,7 @@ echo $user->getLogin();
 $user = new RP();
 $user->setId(1)
      ->setLogin("djefferson")
-     ->setPassword("Delbert")
-     ->setRole("Role");
+     ->setPassword("Delbert");
+     
+$user->getRole("Role");
 
-$user->affiche();
