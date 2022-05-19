@@ -1,11 +1,18 @@
 <?php
+namespace APP\Models;
 class Classe{
     private int $id;
     private string $libelle;
     private string $filiere;
     private string $niveau;
 
+    //fonctions navigationnelles => ce sont les fonction issues des associations
 
+    // one to many avec cours pour
+
+    public function cours():array{
+        return [];
+    }
 
     /**
      * Get the value of id

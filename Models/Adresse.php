@@ -1,4 +1,5 @@
 <?php
+namespace APP\Models;
 class Adresse{
     private int $id;
     private string $ville;
@@ -6,7 +7,7 @@ class Adresse{
 
     //one to many avec professeur 
     public function professeur():Professeur{
-        return new Professeur;
+        return new Professeur();
     }
 
 

@@ -1,4 +1,5 @@
 <?php
+namespace APP\Models;
 //RP herite de User (extends = herite)
 class RP extends User{
     public function __construct(){

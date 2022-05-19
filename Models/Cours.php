@@ -1,12 +1,26 @@
 <?php
+namespace APP\Models;
 class Cours{
     private int $id;
     private string $heureDebut;
     private string $heureFin;
-    private DateTime $dateCours;
+    //classe de php on mets "\" namespace racine
+    private \DateTime $dateCours;
 
-  
+  // many to one avec classe
+    public function classe():Classe{
+        return new Classe();
+    }
 
+    //many to one avec professeur
+    public function professeur():Professeur{
+        return new Professeur();
+    }
+
+    //many to one avec module
+    public function module():Module{
+        return new Module();
+    }
    
 
     /**

@@ -1,7 +1,11 @@
 <?php
+namespace APP\Models;
  // classe concrete lorsqu'elle est istanciable
 // par defaut une classe est concrete
-//classe abstraite lorsqu'elle estn'est instanciable(elle ne produit pas d'objet)
+//classe abstraite lorsqu'elle est n'est instanciable(elle ne produit pas d'objet)
+// classe final lorsqu'elle ne participe pas dans hierarchie d'heritage
+
+
 abstract class User{
     //Attributs instances
     // un attributs instances ce sont des attributs qui sont specifique a un objet 

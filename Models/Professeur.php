@@ -1,5 +1,5 @@
 <?php
-
+namespace APP\Models;
 use professeur as GlobalProfesseur;
 
 class professeur extends User{
@@ -16,6 +16,11 @@ class professeur extends User{
     //many to many avec module
     public function modules():array{
         return [];
+    }
+
+    //one to one avec adresse
+    public function adresse():Adresse|null{
+        return null ;
     }
 
     /**
