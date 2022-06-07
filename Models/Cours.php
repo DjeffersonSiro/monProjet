@@ -1,11 +1,18 @@
 <?php
-namespace APP\Models;
-class Cours{
+namespace App\Models;
+use APP\core\Model;
+class Cours extends Model{
     private int $id;
     private string $heureDebut;
     private string $heureFin;
     //classe de php on mets "\" namespace racine
     private \DateTime $dateCours;
+
+
+    public function __construct(){
+        parent::$table="cours";
+    }
+
 
   // many to one avec classe
     public function classe():Classe{
@@ -14,13 +21,28 @@ class Cours{
 
     //many to one avec professeur
     public function professeur():Professeur{
+        $sql="select u.* from cours c,
+            user u where c.proffeseur_id=u.id and c.id=?
+            and role like 'ROLE_PROFFESSEUR'";
+            parent::selectWhere($sql,[$this->id],true);
         return new Professeur();
     }
 
     //many to one avec module
     public function module():Module{
+        $sql="select m.* from cours c,
+            module m where c.module_id=m.id and c.id=?";
+        parent::selectWhere($sql,[$this->id],true);
         return new Module();
     }
+
+    //many to many avec etudiant
+    public function etudiant():Etudiant{
+        $sql="select e.* from etudiant e,
+            edutdiand e where c.etudiand_id=e.id and c.id={$this->id}";
+        return new Etudiant();
+    }
+
    
 
     /**

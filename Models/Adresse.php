@@ -1,13 +1,18 @@
 <?php
-namespace APP\Models;
+namespace App\Models;
 class Adresse{
     private int $id;
     private string $ville;
     private string $quartier;
 
-    //one to many avec professeur 
+    //one to to avec professeur 
     public function professeur():Professeur{
         return new Professeur();
+    }
+
+    //one to to avec professeur 
+    public function etudiant():Etudiant{
+        return new Etudiant();
     }
 
 

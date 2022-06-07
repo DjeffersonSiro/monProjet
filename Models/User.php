@@ -1,18 +1,19 @@
 <?php
-namespace APP\Models;
+namespace App\Models;
+use App\Core\Model;
  // classe concrete lorsqu'elle est istanciable
 // par defaut une classe est concrete
 //classe abstraite lorsqu'elle est n'est instanciable(elle ne produit pas d'objet)
 // classe final lorsqu'elle ne participe pas dans hierarchie d'heritage
 
 
-abstract class User{
+abstract class User extends Model{
     //Attributs instances
     // un attributs instances ce sont des attributs qui sont specifique a un objet 
     protected int $id;
     protected string $login;
     protected string $password;
-    protected string $role;
+    protected static string $role;
     
     //Attributs static
     // un attributs static ce sont des attributs qui sont commun a l'ensemble des objets
@@ -22,7 +23,7 @@ abstract class User{
     //Methode
     //constructeur par defaut
     public function __construct(){
-
+        parent::$table="user";
     }
 
     //Getters
@@ -105,10 +106,19 @@ abstract class User{
      * @return  self
      */ 
     public function setRole($role)
-    {
+    { 
         $this->role = $role;
 
         return $this;
+    }
+    public function insert(){
+        //parent::$table="user";
+        //die(parent::$table);
+        $sql="INSERT INTO ".parent::$table." (`login`, `password`, `role`)
+            VALUES (?, ?, ?);";
+        return parent::database()->executeUpdate($sql,[
+                                                $this->login,$this->password,self::$role]);
+        
     }
 }
 

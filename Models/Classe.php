@@ -1,16 +1,25 @@
 <?php
-namespace APP\Models;
-class Classe{
+namespace App\Models;
+use APP\core\Model;
+class Classe extends Model{
     private int $id;
     private string $libelle;
     private string $filiere;
     private string $niveau;
+
+
+    public function __construct(){
+        parent::$table="classe";
+    }
 
     //fonctions navigationnelles => ce sont les fonction issues des associations
 
     // one to many avec cours pour
 
     public function cours():array{
+        $sql="select c.* from cours c,
+        classe cl where c.classe_id=cl.id and cl.id=?";
+        parent::selectWhere($sql,[$this->id]);
         return [];
     }
 

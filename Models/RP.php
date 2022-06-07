@@ -1,9 +1,11 @@
 <?php
-namespace APP\Models;
+namespace App\Models;
 //RP herite de User (extends = herite)
 class RP extends User{
     public function __construct(){
-        $this->role="ROLE_RP";
+
+        parent::__construct();
+        parent::$role="ROLE_RP";
     }
     // redefinition => evolution
     // 1- heritage de methode
@@ -13,9 +15,16 @@ class RP extends User{
      *
      * @return  self
      */ 
-    public function setRole($role)
-    {
-        $this->role = $role; 
-        return $this;
+
+    
+    //public function setRole($role)
+    //{
+      //  $this->role = $role; 
+       // return $this;
+    //} 
+    public static function selectAll(){
+        $sql="select * from ".parent::$table." where role like ? ";
+    return parent::database()->executeSelect($sql,[parent::$role]);
+
     }
 }

@@ -1,7 +1,11 @@
 <?php
 //Front controller
-// URL = localhost:8000
+// URL = localhost:
+
+use App\Core\DataBase;
+
 require_once("../vendor/autoload.php");
+
 
 //require_once("../models/User.php");
 //require_once("../models/RP.php");
@@ -34,8 +38,32 @@ echo $user->getLogin();
 
 echo $RP->getRole(); */
 
-use APP\Models\RP;
-$RP = new RP();
+/*
+use APP\Models\AC;
+$AC = new AC();
+
+use APP\Models\Professeur;
+$Professeur = new Professeur();
+
+use APP\Models\Etudiant;
+$Etudiant = new Etudiant();
+*/ 
+
+//$db->openConnexion();
+//$db->executeSelect();
+use App\Models\RP; 
+$rp =new RP();
+$rp->setLogin("rp1");
+$rp->setPassword("rp");
+$rp->insert();
+echo "<pre>";
+RP::selectAll();
+var_dump(RP::selectAll());
+echo "</pre>";
+
+
+
+
 
 
 
