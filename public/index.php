@@ -1,10 +1,53 @@
 <?php
-//Front controller
-// URL = localhost:
+/** 
+ * Front controller
+ *URL = localhost:8000/uri
+ *uri=> uniform ressource identifier => controller/user case
+ *--- controller => class
+ *     use case uri
+ *-- ajouter => POST localhost:8000/classe-add
+ *-- modifier => POST localhost:8000/classe-up
+ *-- lister => GET localhost:8000/classe
+ *-- supprimer => GETT localhost:8000/classe-del
+  *--- controller => cours
+ *     use case uri
+ *-- ajouter => POST localhost:8000/classe-add
+ *-- modifier => POST localhost:8000/classe-up
+ *-- lister => GET localhost:8000/classe
+ *-- supprimer => POST localhost:8000/classe-delete
 
-use App\Core\DataBase;
+*/
+     
+//use App\Core\DataBase;
 
 require_once("../vendor/autoload.php");
+require_once('./../core/constantes.php');
+require_once('./../core/fonctions.php');
+
+dd(str_replace("public","",$_SERVER)['DOCUMENT_ROOT']);
+
+use App\Controller\SecuriteController;
+use App\Controller\ClasseController;
+use App\Core\Router;
+$router=new Router();
+
+//Enregistrer une route : est une uri associee a un controller et une action
+
+//$router->route("uri",[controller,action]);
+$router->route("/",[SecuriteController::class],"connexion");
+$router->route("/logout",[SecuriteController::class],"deconnexion");
+$router->route("/classe",[ClasseController::class,"lister"]);
+$router->route("/classe-add",[ClasseController::class,"ajouter"]);
+$router->route("/classe-up",[ClasseController::class,"modifier"]);
+$router->route("/classe-del",[ClasseController::class,"supprimer"]);
+
+use App\Exceptions\RouteNotFoundException;
+try {
+     $router->resolve();
+} catch (RouteNotFoundException $ex) {
+     die($ex->message);
+} 
+$router->resolve();
 
 
 //require_once("../models/User.php");
@@ -51,7 +94,8 @@ $Etudiant = new Etudiant();
 
 //$db->openConnexion();
 //$db->executeSelect();
-use App\Models\RP; 
+
+/*use App\Models\RP; 
 $rp =new RP();
 $rp->setLogin("rp1");
 $rp->setPassword("rp");
@@ -59,7 +103,7 @@ $rp->insert();
 echo "<pre>";
 RP::selectAll();
 var_dump(RP::selectAll());
-echo "</pre>";
+echo "</pre>"; */
 
 
 
